@@ -1,0 +1,73 @@
+{
+  "name": "sparqlresults-to-graphqlresults",
+  "version": "1.0.0",
+  "description": "Converts SPARQL query results to GraphQL query results (JSON(-LD)",
+  "keywords": [
+    "graphql",
+    "sparql",
+    "query",
+    "rdf",
+    "linked data"
+  ],
+  "main": "index.js",
+  "typings": "index",
+  "repository": "git@github.com:rubensworks/sparqlresults-to-graphqlresults.js.git",
+  "author": "Ruben Taelman <rubensworks@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/rubensworks/sparqlresults-to-graphqlresults.js/issues"
+  },
+  "homepage": "https://github.com/rubensworks/sparqlresults-to-graphqlresults.js#readme",
+  "license": "MIT",
+  "bin": {
+    "sparqlresults-to-graphqlresults": "./bin/sparqlresults-to-graphqlresults.js"
+  },
+  "files": [
+    "lib/**/*.d.ts",
+    "lib/**/*.js",
+    "index.d.ts",
+    "index.js"
+  ],
+  "pre-commit": [
+    "build",
+    "lint",
+    "test"
+  ],
+  "devDependencies": {
+    "@types/jest": "^21.1.8",
+    "@types/minimist": "^1.2.0",
+    "coveralls": "^3.0.0",
+    "jest": "^21.2.1",
+    "pre-commit": "^1.2.2",
+    "ts-jest": "^21.2.3",
+    "tslint": "^5.8.0",
+    "tslint-eslint-rules": "^4.1.1",
+    "typescript": "^2.6.2"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "testRegex": "(/test/.*|(\\.|/)(test|spec))\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "collectCoverage": true,
+    "mapCoverage": true
+  },
+  "scripts": {
+    "test": "jest ${1}",
+    "test-watch": "jest ${1} --watch",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "lint": "tslint index.ts lib/**/*.ts test/**/*.ts --exclude '**/*.d.ts'",
+    "build": "tsc",
+    "validate": "npm ls",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "minimist": "^1.2.0"
+  }
+}
