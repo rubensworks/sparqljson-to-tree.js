@@ -35,6 +35,8 @@
   "devDependencies": {
     "@types/jest": "^21.1.8",
     "@types/minimist": "^1.2.0",
+    "@types/rdf-data-model": "^1.0.1",
+    "@types/rdf-js": "^1.0.1",
     "coveralls": "^3.0.0",
     "jest": "^21.2.1",
     "pre-commit": "^1.2.2",
@@ -68,6 +70,9 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "minimist": "^1.2.0"
+    "jsonld": "^1.0.2",
+    "minimist": "^1.2.0",
+    "rdf-data-model": "^1.0.0",
+    "sparqljson-parse": "^1.0.0"
   }
 }
