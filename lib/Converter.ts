@@ -2,7 +2,7 @@ import * as RDF from "rdf-js";
 import {IBindings, ISettings, SparqlJsonParser} from "sparqljson-parse";
 
 /**
- * Converts SPARQL JSON results originating from a GraphQL query into a GraphQL-like response tree.
+ * Converts SPARQL JSON results to a tree-based structure.
  */
 export class Converter {
 

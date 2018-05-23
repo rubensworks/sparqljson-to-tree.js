@@ -1,7 +1,7 @@
 {
-  "name": "sparqlresults-to-graphqlresults",
+  "name": "sparqljson-to-tree",
   "version": "1.0.0",
-  "description": "Converts SPARQL query results to GraphQL query results (JSON(-LD)",
+  "description": "Converts SPARQL JSON results to a tree-based structure",
   "keywords": [
     "graphql",
     "sparql",
@@ -11,15 +11,15 @@
   ],
   "main": "index.js",
   "typings": "index",
-  "repository": "git@github.com:rubensworks/sparqlresults-to-graphqlresults.js.git",
+  "repository": "git@github.com:rubensworks/sparqljson-to-tree.js.git",
   "author": "Ruben Taelman <rubensworks@gmail.com>",
   "bugs": {
-    "url": "https://github.com/rubensworks/sparqlresults-to-graphqlresults.js/issues"
+    "url": "https://github.com/rubensworks/sparqljson-to-tree.js/issues"
   },
-  "homepage": "https://github.com/rubensworks/sparqlresults-to-graphqlresults.js#readme",
+  "homepage": "https://github.com/rubensworks/sparqljson-to-tree.js#readme",
   "license": "MIT",
   "bin": {
-    "sparqlresults-to-graphqlresults": "./bin/sparqlresults-to-graphqlresults.js"
+    "sparqljson-to-tree": "./bin/sparqljson-to-tree.js"
   },
   "files": [
     "lib/**/*.d.ts",
