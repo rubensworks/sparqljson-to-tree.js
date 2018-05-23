@@ -13,6 +13,10 @@ describe('Converter', () => {
     it('should not materialize terms', () => {
       return expect((<any> optionlessInstance).materializeRdfJsTerms).toBeFalsy();
     });
+
+    it('should have the _ delimiter', () => {
+      return expect((<any> optionlessInstance).delimiter).toEqual('_');
+    });
   });
 
   describe('constructed with empty options', () => {
@@ -25,10 +29,14 @@ describe('Converter', () => {
     it('should not materialize terms', () => {
       return expect((<any> optionsEmptyInstance).materializeRdfJsTerms).toBeFalsy();
     });
+
+    it('should have the _ delimiter', () => {
+      return expect((<any> optionsEmptyInstance).delimiter).toEqual('_');
+    });
   });
 
   describe('constructed with options', () => {
-    const optionsInstance = new Converter({ materializeRdfJsTerms: true });
+    const optionsInstance = new Converter({ materializeRdfJsTerms: true, delimiter: '$' });
 
     it('should be a valid instance', () => {
       return expect(optionsInstance).toBeInstanceOf(Converter);
@@ -36,6 +44,10 @@ describe('Converter', () => {
 
     it('should materialize terms', () => {
       return expect((<any> optionsInstance).materializeRdfJsTerms).toBeTruthy();
+    });
+
+    it('should have the $ delimiter', () => {
+      return expect((<any> optionsInstance).delimiter).toEqual('$');
     });
   });
 

@@ -2,16 +2,18 @@ import * as RDF from "rdf-js";
 import {IBindings, ISettings, SparqlJsonParser} from "sparqljson-parse";
 
 /**
- * Converts SPARQL JSON results to a tree-based structure.
+ * Converts SPARQL JSON results to a tree-based structure by splitting variables on a certain delimiter.
  */
 export class Converter {
 
+  private readonly delimiter: string;
   private readonly parser: SparqlJsonParser;
   private readonly materializeRdfJsTerms: boolean;
 
   constructor(settings?: IConverterSettings) {
-    settings = settings || {};
+    settings = settings || { delimiter: '_' };
     settings.prefixVariableQuestionMark = false;
+    this.delimiter = settings.delimiter || '_';
     this.parser = new SparqlJsonParser(settings);
     this.materializeRdfJsTerms = settings.materializeRdfJsTerms;
   }
@@ -21,14 +23,16 @@ export class Converter {
    * @param tree A tree datastructure.
    * @param {string[]} path The path of keys in the tree.
    * @param {Term} value A value to add.
-   * @param {string} lastKeyPath The accumulated key path (separated by '_') through recursive calls, can be empty.
+   * @param {string} lastKeyPath The accumulated key path (separated by the given delimiter)
+   *                             through recursive calls, can be empty.
    * @param {ISchema} schema A schema.
    * @param {boolean} materializeRdfJsTerms If RDFJS terms should be materialized.
+   * @param {string} delimiter The string to join key paths by.
    */
-  public static addValueToTree(tree: any, path: string[], value: RDF.Term,
-                               lastKeyPath: string, schema: ISchema, materializeRdfJsTerms: boolean) {
+  public static addValueToTree(tree: any, path: string[], value: RDF.Term, lastKeyPath: string,
+                               schema: ISchema, materializeRdfJsTerms: boolean, delimiter: string) {
     const key = path[0];
-    const keyPath = lastKeyPath ? (lastKeyPath + '_' + key) : key;
+    const keyPath = lastKeyPath ? (lastKeyPath + delimiter + key) : key;
     const singularize: boolean = schema.singularizeVariables[keyPath];
     if (path.length === 1) {
       // Leaf nodes
@@ -58,7 +62,7 @@ export class Converter {
         nextNode = {};
         tree[key].push(nextNode);
       }
-      Converter.addValueToTree(nextNode, path.slice(1), value, keyPath, schema, materializeRdfJsTerms);
+      Converter.addValueToTree(nextNode, path.slice(1), value, keyPath, schema, materializeRdfJsTerms, delimiter);
     }
   }
 
@@ -82,9 +86,9 @@ export class Converter {
     const tree: any = {};
     for (const bindings of bindingsArray) {
       for (const key in bindings) {
-        const path: string[] = key.split('_');
+        const path: string[] = key.split(this.delimiter);
         const value: RDF.Term = bindings[key];
-        Converter.addValueToTree(tree, path, value, '', schema, this.materializeRdfJsTerms);
+        Converter.addValueToTree(tree, path, value, '', schema, this.materializeRdfJsTerms, this.delimiter);
       }
     }
     return { data: tree };
@@ -96,6 +100,11 @@ export class Converter {
  * Constructor settings object interface for {@link Converter}.
  */
 export interface IConverterSettings extends ISettings {
+  /**
+   * The string to split variable names by.
+   * Defaults to '_'.
+   */
+  delimiter?: string;
   /**
    * If RDFJS terms should be converted to their raw value.
    */
