@@ -60,7 +60,7 @@ describe('Converter', () => {
   describe('#sparqlJsonResultsToTree', () => {
     it('should convert an empty SPARQL JSON response', () => {
       return expect(converter.sparqlJsonResultsToTree({ results: { bindings: [] } }))
-        .toEqual({ data: {} });
+        .toEqual({});
     });
 
     it('should convert a non-empty SPARQL JSON response', () => {
@@ -71,19 +71,19 @@ describe('Converter', () => {
         { books_name: { type: 'literal', value: 'Book 4' } },
         { books_name: { type: 'literal', value: 'Book 5' } },
       ] } }, { singularizeVariables: { books: false, books_name: true } }))
-        .toEqual({ data: { books: [
+        .toEqual({ books: [
           { name: literal('Book 1') },
           { name: literal('Book 2') },
           { name: literal('Book 3') },
           { name: literal('Book 4') },
           { name: literal('Book 5') },
-        ] } });
+        ] });
     });
   });
 
   describe('#bindingsToTree', () => {
     it('should convert an empty bindings array', () => {
-      return expect(converter.bindingsToTree([])).toEqual({ data: {} });
+      return expect(converter.bindingsToTree([])).toEqual({});
     });
 
     it('should convert a non-empty bindings array', () => {
@@ -94,13 +94,13 @@ describe('Converter', () => {
         { books_name: literal('Book 4') },
         { books_name: literal('Book 5') },
       ], { singularizeVariables: { books: false, books_name: true } }))
-        .toEqual({ data: { books: [
+        .toEqual({ books: [
           { name: literal('Book 1') },
           { name: literal('Book 2') },
           { name: literal('Book 3') },
           { name: literal('Book 4') },
           { name: literal('Book 5') },
-        ] } });
+        ] });
     });
   });
 

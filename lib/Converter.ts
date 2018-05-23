@@ -91,7 +91,7 @@ export class Converter {
         Converter.addValueToTree(tree, path, value, '', schema, this.materializeRdfJsTerms, this.delimiter);
       }
     }
-    return { data: tree };
+    return tree;
   }
 
 }
