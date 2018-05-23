@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/rubensworks/sparqljson-to-tree.js/badge.svg?branch=master)](https://coveralls.io/github/rubensworks/sparqljson-to-tree.js?branch=master)
 [![npm version](https://badge.fury.io/js/sparqljson-to-tree.svg)](https://www.npmjs.com/package/sparqljson-to-tree)
 
-A utility package that allows you to convert SPARQL JSON results to a tree-based structure.
+A utility package that allows you to convert [SPARQL JSON](https://www.w3.org/TR/sparql11-results-json/) results to a tree-based structure.
 This is done by splitting variable names by a certain delimiter value (such as `_`) and using these as paths inside a tree structure.
 
 For example, it can convert the following SPARQL JSON results as follows:
