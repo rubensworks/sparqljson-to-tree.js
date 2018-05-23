@@ -107,6 +107,7 @@ export interface IConverterSettings extends ISettings {
   delimiter?: string;
   /**
    * If RDFJS terms should be converted to their raw value.
+   * Defaults to false.
    */
   materializeRdfJsTerms?: boolean;
 }
