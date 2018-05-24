@@ -60,7 +60,12 @@ describe('Converter', () => {
   describe('#sparqlJsonResultsToTree', () => {
     it('should convert an empty SPARQL JSON response', () => {
       return expect(converter.sparqlJsonResultsToTree({ results: { bindings: [] } }))
-        .toEqual({});
+        .toEqual([]);
+    });
+
+    it('should convert an empty SPARQL JSON response for a singular root', () => {
+      return expect(converter.sparqlJsonResultsToTree({ results: { bindings: [] } },
+        { singularizeVariables: { '': true } })).toEqual({});
     });
 
     it('should convert a non-empty SPARQL JSON response', () => {
@@ -70,7 +75,7 @@ describe('Converter', () => {
         { books_name: { type: 'literal', value: 'Book 3' } },
         { books_name: { type: 'literal', value: 'Book 4' } },
         { books_name: { type: 'literal', value: 'Book 5' } },
-      ] } }, { singularizeVariables: { books: false, books_name: true } }))
+      ] } }, { singularizeVariables: { '': true, 'books': false, 'books_name': true } }))
         .toEqual({ books: [
           { name: literal('Book 1') },
           { name: literal('Book 2') },
@@ -83,7 +88,11 @@ describe('Converter', () => {
 
   describe('#bindingsToTree', () => {
     it('should convert an empty bindings array', () => {
-      return expect(converter.bindingsToTree([])).toEqual({});
+      return expect(converter.bindingsToTree([])).toEqual([]);
+    });
+
+    it('should convert an empty bindings array for a singular root', () => {
+      return expect(converter.bindingsToTree([], { singularizeVariables: { '': true })).toEqual({});
     });
 
     it('should convert a non-empty bindings array', () => {
@@ -93,7 +102,7 @@ describe('Converter', () => {
         { books_name: literal('Book 3') },
         { books_name: literal('Book 4') },
         { books_name: literal('Book 5') },
-      ], { singularizeVariables: { books: false, books_name: true } }))
+      ], { singularizeVariables: { '': true, 'books': false, 'books_name': true } }))
         .toEqual({ books: [
           { name: literal('Book 1') },
           { name: literal('Book 2') },
@@ -101,6 +110,40 @@ describe('Converter', () => {
           { name: literal('Book 4') },
           { name: literal('Book 5') },
         ] });
+    });
+
+    it('should convert a non-empty bindings array for a singular root', () => {
+      return expect(converter.bindingsToTree([
+        { books_name: literal('Book 1') },
+        { books_name: literal('Book 2') },
+        { books_name: literal('Book 3') },
+        { books_name: literal('Book 4') },
+        { books_name: literal('Book 5') },
+      ], { singularizeVariables: { books: false, books_name: true } }))
+        .toEqual([
+          { books: [ { name: literal('Book 1') } },
+          { books: [ { name: literal('Book 2') } },
+          { books: [ { name: literal('Book 3') } },
+          { books: [ { name: literal('Book 4') } },
+          { books: [ { name: literal('Book 5') } },
+        ]);
+    });
+
+    it('should convert a non-empty bindings array with multiple binding links for a singular root', () => {
+      return expect(converter.bindingsToTree([
+        { books_name: literal('Book 1'), books_author: literal('Person 1') },
+        { books_name: literal('Book 2'), books_author: literal('Person 2') },
+        { books_name: literal('Book 3'), books_author: literal('Person 3') },
+        { books_name: literal('Book 4'), books_author: literal('Person 4') },
+        { books_name: literal('Book 5'), books_author: literal('Person 5') },
+      ], { singularizeVariables: { books: true, books_name: true, books_author: true } }))
+        .toEqual([
+          { books: { name: literal('Book 1'), author: literal('Person 1') } },
+          { books: { name: literal('Book 2'), author: literal('Person 2') } },
+          { books: { name: literal('Book 3'), author: literal('Person 3') } },
+          { books: { name: literal('Book 4'), author: literal('Person 4') } },
+          { books: { name: literal('Book 5'), author: literal('Person 5') } },
+        ]);
     });
   });
 

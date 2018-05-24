@@ -83,12 +83,18 @@ export class Converter {
    * @return {any} A GraphQL results tree.
    */
   public bindingsToTree(bindingsArray: IBindings[], schema: ISchema): any {
-    const tree: any = {};
+    const singularRoot = schema && schema.singularizeVariables[''];
+    const tree: any = singularRoot ? {} : [];
     for (const bindings of bindingsArray) {
+      let subTree = tree;
+      if (!singularRoot) {
+        subTree = {};
+        tree.push(subTree);
+      }
       for (const key in bindings) {
         const path: string[] = key.split(this.delimiter);
         const value: RDF.Term = bindings[key];
-        Converter.addValueToTree(tree, path, value, '', schema, this.materializeRdfJsTerms, this.delimiter);
+        Converter.addValueToTree(subTree, path, value, '', schema, this.materializeRdfJsTerms, this.delimiter);
       }
     }
     return tree;
