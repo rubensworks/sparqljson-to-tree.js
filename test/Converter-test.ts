@@ -92,7 +92,7 @@ describe('Converter', () => {
     });
 
     it('should convert an empty bindings array for a singular root', () => {
-      return expect(converter.bindingsToTree([], { singularizeVariables: { '': true })).toEqual({});
+      return expect(converter.bindingsToTree([], { singularizeVariables: { '': true }})).toEqual({});
     });
 
     it('should convert a non-empty bindings array', () => {
@@ -121,11 +121,11 @@ describe('Converter', () => {
         { books_name: literal('Book 5') },
       ], { singularizeVariables: { books: false, books_name: true } }))
         .toEqual([
-          { books: [ { name: literal('Book 1') } },
-          { books: [ { name: literal('Book 2') } },
-          { books: [ { name: literal('Book 3') } },
-          { books: [ { name: literal('Book 4') } },
-          { books: [ { name: literal('Book 5') } },
+          { books: [ { name: literal('Book 1') } ] },
+          { books: [ { name: literal('Book 2') } ] },
+          { books: [ { name: literal('Book 3') } ] },
+          { books: [ { name: literal('Book 4') } ] },
+          { books: [ { name: literal('Book 5') } ] },
         ]);
     });
 
@@ -154,7 +154,7 @@ describe('Converter', () => {
         leaf: false,
       };
       Converter.addValueToTree(tree, [ 'leaf' ], literal('abc'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       return expect(tree).toEqual({ leaf: [ literal('abc') ] });
     });
 
@@ -164,7 +164,7 @@ describe('Converter', () => {
         leaf: false,
       };
       Converter.addValueToTree(tree, [ 'leaf' ], literal('abc'), '',
-        { singularizeVariables }, true);
+        { singularizeVariables }, true, '_');
       return expect(tree).toEqual({ leaf: [ 'abc' ] });
     });
 
@@ -174,11 +174,11 @@ describe('Converter', () => {
         leaf: false,
       };
       Converter.addValueToTree(tree, [ 'leaf' ], literal('abc'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       Converter.addValueToTree(tree, [ 'leaf' ], literal('def'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       Converter.addValueToTree(tree, [ 'leaf' ], literal('ghi'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       return expect(tree).toEqual({ leaf: [ literal('abc'), literal('def'), literal('ghi') ] });
     });
 
@@ -188,11 +188,11 @@ describe('Converter', () => {
         leaf: false,
       };
       Converter.addValueToTree(tree, [ 'leaf' ], literal('abc'), '',
-        { singularizeVariables }, true);
+        { singularizeVariables }, true, '_');
       Converter.addValueToTree(tree, [ 'leaf' ], literal('def'), '',
-        { singularizeVariables }, true);
+        { singularizeVariables }, true, '_');
       Converter.addValueToTree(tree, [ 'leaf' ], literal('ghi'), '',
-        { singularizeVariables }, true);
+        { singularizeVariables }, true, '_');
       return expect(tree).toEqual({ leaf: [ 'abc', 'def', 'ghi' ] });
     });
 
@@ -202,7 +202,7 @@ describe('Converter', () => {
         leaf: true,
       };
       Converter.addValueToTree(tree, [ 'leaf' ], literal('abc'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       return expect(tree).toEqual({ leaf: literal('abc') });
     });
 
@@ -212,7 +212,7 @@ describe('Converter', () => {
         leaf: true,
       };
       Converter.addValueToTree(tree, [ 'leaf' ], literal('abc'), '',
-        { singularizeVariables }, true);
+        { singularizeVariables }, true, '_');
       return expect(tree).toEqual({ leaf: 'abc' });
     });
 
@@ -222,11 +222,11 @@ describe('Converter', () => {
         leaf: true,
       };
       Converter.addValueToTree(tree, [ 'leaf' ], literal('abc'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       Converter.addValueToTree(tree, [ 'leaf' ], literal('def'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       Converter.addValueToTree(tree, [ 'leaf' ], literal('ghi'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       return expect(tree).toEqual({ leaf: literal('abc') });
     });
 
@@ -236,11 +236,11 @@ describe('Converter', () => {
         leaf: true,
       };
       Converter.addValueToTree(tree, [ 'leaf' ], literal('abc'), '',
-        { singularizeVariables }, true);
+        { singularizeVariables }, true, '_');
       Converter.addValueToTree(tree, [ 'leaf' ], literal('def'), '',
-        { singularizeVariables }, true);
+        { singularizeVariables }, true, '_');
       Converter.addValueToTree(tree, [ 'leaf' ], literal('ghi'), '',
-        { singularizeVariables }, true);
+        { singularizeVariables }, true, '_');
       return expect(tree).toEqual({ leaf: 'abc' });
     });
 
@@ -251,7 +251,7 @@ describe('Converter', () => {
         inner_leaf: false,
       };
       Converter.addValueToTree(tree, [ 'inner', 'leaf' ], literal('abc'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       return expect(tree).toEqual({ inner: [ { leaf: [ literal('abc') ] } ] });
     });
 
@@ -262,7 +262,7 @@ describe('Converter', () => {
         inner_leaf: false,
       };
       Converter.addValueToTree(tree, [ 'inner', 'leaf' ], literal('abc'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       return expect(tree).toEqual({ inner: { leaf: [ literal('abc') ] } });
     });
 
@@ -273,9 +273,9 @@ describe('Converter', () => {
         inner_leaf: false,
       };
       Converter.addValueToTree(tree, [ 'inner', 'leaf' ], literal('abc'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       Converter.addValueToTree(tree, [ 'inner', 'leaf' ], literal('def'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       return expect(tree).toEqual({ inner: [ { leaf: [ literal('abc') ] }, { leaf: [ literal('def') ] } ] });
     });
 
@@ -286,9 +286,9 @@ describe('Converter', () => {
         inner_leaf: false,
       };
       Converter.addValueToTree(tree, [ 'inner', 'leaf' ], literal('abc'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       Converter.addValueToTree(tree, [ 'inner', 'leaf' ], literal('def'), '',
-        { singularizeVariables }, false);
+        { singularizeVariables }, false, '_');
       return expect(tree).toEqual({ inner: { leaf: [ literal('abc'), literal('def') ] } });
     });
   });
