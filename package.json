@@ -18,9 +18,6 @@
   },
   "homepage": "https://github.com/rubensworks/sparqljson-to-tree.js#readme",
   "license": "MIT",
-  "bin": {
-    "sparqljson-to-tree": "./bin/sparqljson-to-tree.js"
-  },
   "files": [
     "lib/**/*.d.ts",
     "lib/**/*.js",
