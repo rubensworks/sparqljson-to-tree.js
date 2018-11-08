@@ -30,12 +30,13 @@
     "test"
   ],
   "devDependencies": {
+    "@rdfjs/data-model": "^1.1.1",
     "@types/jest": "^23.3.0",
     "@types/minimist": "^1.2.0",
     "coveralls": "^3.0.0",
     "jest": "^23.4.1",
+    "manual-git-changelog": "^1.0.0",
     "pre-commit": "^1.2.2",
-    "@rdfjs/data-model": "^1.1.1",
     "ts-jest": "^23.10.0",
     "tslint": "^5.8.0",
     "tslint-eslint-rules": "^5.3.1",
@@ -65,7 +66,8 @@
     "lint": "tslint index.ts lib/**/*.ts test/**/*.ts --exclude '**/*.d.ts'",
     "build": "tsc",
     "validate": "npm ls",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "version": "manual-git-changelog onversion"
   },
   "dependencies": {
     "sparqljson-parse": "^1.5.0"
