@@ -76,6 +76,7 @@ const sparqlResponse = { results: { bindings: [
   { books_name: { type: 'literal', value: 'Book 5' } },
 ] } };
 const schema = { singularizeVariables: {
+  '': true, // So we have an object as root instead of an array
   books: false,
   books_name: true,
 } };
