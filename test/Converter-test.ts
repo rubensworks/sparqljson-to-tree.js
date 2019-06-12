@@ -1,4 +1,4 @@
-import {literal} from "@rdfjs/data-model";
+import {literal, namedNode} from "@rdfjs/data-model";
 import {Converter} from "../lib/Converter";
 
 describe('Converter', () => {
@@ -695,6 +695,11 @@ describe('Converter', () => {
   describe('#materializeTree', () => {
     it('should materialize terms', () => {
       return expect(Converter.materializeTree(literal('abc'))).toEqual('abc');
+    });
+
+    it('should materialize datatyped literal terms', () => {
+      return expect(Converter.materializeTree(literal('123',
+        namedNode('http://www.w3.org/2001/XMLSchema#integer')))).toEqual(123);
     });
 
     it('should materialize arrays', () => {
