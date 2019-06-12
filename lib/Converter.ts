@@ -1,4 +1,5 @@
 import * as RDF from "rdf-js";
+import {getTermRaw} from "rdf-literal";
 import {IBindings, ISettings, SparqlJsonParser} from "sparqljson-parse";
 
 /**
@@ -140,7 +141,7 @@ export class Converter {
    */
   public static materializeTree(tree: any): any {
     if (tree.termType) {
-      return tree.value;
+      return getTermRaw(tree);
     } else if (Array.isArray(tree)) {
       return tree.map(Converter.materializeTree);
     } else {
