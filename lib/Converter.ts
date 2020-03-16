@@ -92,13 +92,13 @@ export class Converter {
         if (tree1.length > 0) {
           const merged = [];
           let valid = false;
-          for (let i = 0; i < tree1.length; i++) {
-            const mergedElement = Converter.mergeTrees(tree1[i], tree2[0]);
+          for (const tree1Element of tree1) {
+            const mergedElement = Converter.mergeTrees(tree1Element, tree2[0]);
             if (mergedElement.valid) {
               valid = true;
               merged.push(mergedElement.result);
             } else {
-              merged.push(tree1[i]);
+              merged.push(tree1Element);
             }
           }
 
