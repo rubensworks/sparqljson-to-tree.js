@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+<a name="v2.1.0"></a>
+## [v2.1.0](https://github.com/rubensworks/sparqljson-to-tree.js/compare/v1.3.0...v2.1.0) - 2020-09-16
+
+### Changed
+* [Migrate to rdf-data-factory and @types/rdf-js 4.x](https://github.com/rubensworks/sparqljson-to-tree.js/commit/98d02bf6973dedaae0837f7e641838cce13a8936)
+
 <a name="v2.0.0"></a>
 ## [v2.0.0](https://github.com/rubensworks/sparqljson-to-tree.js/compare/v1.3.0...v2.0.0) - 2019-06-13
 
