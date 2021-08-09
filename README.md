@@ -1,6 +1,6 @@
 # SPARQL-Results+JSON to tree
 
-[![Build Status](https://travis-ci.org/rubensworks/sparqljson-to-tree.js.svg?branch=master)](https://travis-ci.org/rubensworks/sparqljson-to-tree.js)
+[![Build status](https://github.com/rubensworks/sparqljson-to-tree.js/workflows/CI/badge.svg)](https://github.com/rubensworks/sparqljson-to-tree.js/actions?query=workflow%3ACI)
 [![Coverage Status](https://coveralls.io/repos/github/rubensworks/sparqljson-to-tree.js/badge.svg?branch=master)](https://coveralls.io/github/rubensworks/sparqljson-to-tree.js?branch=master)
 [![npm version](https://badge.fury.io/js/sparqljson-to-tree.svg)](https://www.npmjs.com/package/sparqljson-to-tree)
 
