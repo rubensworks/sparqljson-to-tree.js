@@ -73,5 +73,6 @@
   "dependencies": {
     "rdf-literal": "^1.2.0",
     "sparqljson-parse": "^1.6.0"
-  }
+  },
+  "sideEffects": false
 }
