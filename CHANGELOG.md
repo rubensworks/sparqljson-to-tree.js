@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+<a name="v3.0.0"></a>
+## [v3.0.0](https://github.com/rubensworks/sparqljson-to-tree.js/compare/v2.1.0...v3.0.0) - 2022-07-14
+
+This release has been marked as a major change due to the transition from Node's internal stream API to readable-stream. Most users should experience not breakages with this change.
+
+### Changed
+* [Move away from Node.js built-ins](https://github.com/rubensworks/sparqljson-to-tree.js/commit/300a848fecb39b9d11d4e43925eb48ef0a6167b6)
+* [Enable tree shaking in package.json](https://github.com/rubensworks/sparqljson-to-tree.js/commit/8c51fc2ae34d32254c833788510fee11afe291d1)
+
 <a name="v2.1.0"></a>
 ## [v2.1.0](https://github.com/rubensworks/sparqljson-to-tree.js/compare/v1.3.0...v2.1.0) - 2020-09-16
 
