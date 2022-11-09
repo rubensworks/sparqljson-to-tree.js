@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+<a name="v3.0.1"></a>
+## [v3.0.1](https://github.com/rubensworks/sparqljson-to-tree.js/compare/v3.0.0...v3.0.1) - 2022-11-09
+
+### Fixed
+* [Include source map files in packed files](https://github.com/rubensworks/sparqljson-to-tree.js/commit/04550ff6603aad628623da2fc9668b429afeb0c1)
+
 <a name="v3.0.0"></a>
 ## [v3.0.0](https://github.com/rubensworks/sparqljson-to-tree.js/compare/v2.1.0...v3.0.0) - 2022-07-14
 
