@@ -1,4 +1,4 @@
-import * as RDF from "rdf-js";
+import * as RDF from "@rdfjs/types";
 import {getTermRaw} from "rdf-literal";
 import {IBindings, ISettings, SparqlJsonParser} from "sparqljson-parse";
 
