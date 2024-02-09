@@ -32,7 +32,6 @@
     "test"
   ],
   "devDependencies": {
-    "@rdfjs/types": "^1.1.0",
     "@types/jest": "^28.0.0",
     "@types/minimist": "^1.2.0",
     "coveralls": "^3.0.0",
@@ -77,6 +76,7 @@
     "version": "manual-git-changelog onversion"
   },
   "dependencies": {
+    "@rdfjs/types": "*",
     "rdf-literal": "^1.3.2",
     "sparqljson-parse": "^2.0.0"
   },
