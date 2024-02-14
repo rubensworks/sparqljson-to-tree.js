@@ -1,6 +1,6 @@
 {
   "name": "sparqljson-to-tree",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Converts SPARQL JSON results to a tree-based structure",
   "keywords": [
     "graphql",

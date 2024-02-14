@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+<a name="v3.0.2"></a>
+## [v3.0.2](https://github.com/rubensworks/sparqljson-to-tree.js/compare/v3.0.1...v3.0.2) - 2024-02-14
+
+### Fixed
+* [Use @rdfjs/types instead of deprecated @types/rdf-js](https://github.com/rubensworks/sparqljson-to-tree.js/commit/ccc0741b430a5c0ba7df723ff50a800396a24c68)
+
 <a name="v3.0.1"></a>
 ## [v3.0.1](https://github.com/rubensworks/sparqljson-to-tree.js/compare/v3.0.0...v3.0.1) - 2022-11-09
 
