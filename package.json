@@ -81,7 +81,7 @@
   },
   "dependencies": {
     "@rdfjs/types": "*",
-    "rdf-literal": "^1.3.2",
+    "rdf-literal": "^2.0.0",
     "sparqljson-parse": "^2.0.0"
   },
   "sideEffects": false
